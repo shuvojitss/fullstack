@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Info</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="main-container">
+        <h2>Employee List</h2>
+        <button onclick="openForm()">+ Add Employee</button>
+
+        <!-- Popup Form -->
+        <div id="formBox" class="form-popup">
+            <form action="/add" method="POST" class="form-container">
+                <h3>Add Employee</h3>
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="text" name="mobile" placeholder="Mobile Number" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="number" name="salary" placeholder="Salary" step="0.01" required>
+                <div class="form-buttons">
+                    <button type="submit">Add</button>
+                    <button type="button" onclick="closeForm()">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Employee List -->
+        <div class="employee-list">
+            {% for emp in employees %}
+            <div class="employee-item">
+                <p><strong>Name:</strong> {{ emp[1] }}</p>
+                <p><strong>Mobile:</strong> {{ emp[2] }}</p>
+                <p><strong>Email:</strong> {{ emp[3] }}</p>
+                <p><strong>Salary:</strong> ₹{{ emp[4] }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        function openForm() {
+            document.getElementById('formBox').style.display = 'flex';
+        }
+
+        function closeForm() {
+            document.getElementById('formBox').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
