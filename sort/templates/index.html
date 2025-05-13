@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Salary Sorter</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Sort Students by Guardian Salary</h2>
+
+        <form method="POST" class="sort-form">
+            <label for="sort">Sort Order:</label>
+            <select name="sort_order" onchange="this.form.submit()">
+                <option value="ASC" {% if current_order == 'ASC' %}selected{% endif %}>Ascending</option>
+                <option value="DESC" {% if current_order == 'DESC' %}selected{% endif %}>Descending</option>
+            </select>
+        </form>
+
+        <div class="student-list">
+            {% for student in students %}
+                <div class="student-box">
+                    <p><strong>Name:</strong> {{ student[0] }}</p>
+                    <p><strong>Guardian Salary:</strong> ₹{{ student[1] }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
