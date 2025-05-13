@@ -1,0 +1,81 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f4f8;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: 40px auto;
+    background-color: #ffffff;
+    padding: 20px 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.sort-form {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.controls select,
+.controls input[type="text"],
+.controls button {
+    padding: 8px 12px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.controls button {
+    background-color: #3a86ff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.controls button:hover {
+    background-color: #2a6fd6;
+}
+
+.student-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.student-box {
+    border: 1px solid #ddd;
+    border-left: 5px solid #3a86ff;
+    padding: 15px 20px;
+    background-color: #f9fbfd;
+    border-radius: 6px;
+    transition: transform 0.2s;
+}
+
+.student-box:hover {
+    transform: scale(1.02);
+    background-color: #eef6ff;
+}
+
+.no-results {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+}
