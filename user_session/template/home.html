@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="header">
+        <form action="/profile" method="get">
+            <button type="submit" class="profile-btn">Profile</button>
+        </form>
+    </div>
+
+    <div class="container">
+        {% for entry in entries %}
+        <div class="card">
+            <p><strong>Name:</strong> {{ entry[1] }}</p>
+            <p><strong>Email:</strong> {{ entry[2] }}</p>
+            <p><strong>Salary:</strong> ₹{{ entry[3] }}</p>
+            {% if not filter and entry[0] not in fav_ids %}
+            <a href="/favorite/{{ entry[0] }}" class="fav-btn">Add to Favourite</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="footer">
+        <form action="/logout" method="get">
+            <button type="submit" class="logout-btn">Logout</button>
+        </form>
+    </div>
+</body>
+</html>
