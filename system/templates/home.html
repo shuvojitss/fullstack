@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | Profile App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+<div class="navbar">
+    <div><strong>{{ role.title() }} Dashboard</strong></div>
+    <div><a href="{{ url_for('logout') }}">Logout</a></div>
+</div>
+
+{% if role == 'recruiter' %}
+<div class="add-form">
+    <h2>Add New Profile</h2>
+    <form action="{{ url_for('add_profile') }}" method="POST">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="text" name="mobile" placeholder="Mobile Number" required>
+        <input type="number" name="age" placeholder="Age" required>
+        <input type="text" name="gender" placeholder="Gender" required>
+        <button type="submit">Add Profile</button>
+    </form>
+</div>
+{% endif %}
+
+<div class="profile-grid">
+    {% for profile in profiles %}
+    <div class="profile-box">
+        <p><strong>Name:</strong> {{ profile[1] }}</p>
+        <p><strong>Mobile:</strong> {{ profile[2] }}</p>
+        <p><strong>Age:</strong> {{ profile[3] }}</p>
+        <p><strong>Gender:</strong> {{ profile[4] }}</p>
+
+        {% if role == 'student' and profile[0] not in student_profiles %}
+        <form action="{{ url_for('add_to_profile', profile_id=profile[0]) }}">
+            <button type="submit">Add to My Profile</button>
+        </form>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>
