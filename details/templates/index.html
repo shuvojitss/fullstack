@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <button id="addBtn">Add</button>
+
+    <div class="user-list">
+        {% for user in users %}
+        <div class="user-card">
+            <h3>{{ user[1] }}</h3>
+            <p>{{ user[2] }}</p>
+            <div class="user-actions">
+                <a href="{{ url_for('detail', user_id=user[0]) }}" class="learn-more">Learn More</a>
+                <form action="{{ url_for('delete', user_id=user[0]) }}" method="POST" style="display:inline;">
+                    <button type="submit" class="delete-btn" onclick="return confirm('Are you sure?')">Delete</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Modal Form -->
+    <div id="modal" class="modal">
+        <form class="modal-content" method="POST" action="/add">
+            <h2>Add New User</h2>
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="text" name="mobile" placeholder="Mobile" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <textarea name="summary" placeholder="Summary"></textarea>
+            <textarea name="address" placeholder="Address"></textarea>
+            <button type="submit">Submit</button>
+            <button type="button" id="closeModal">Cancel</button>
+        </form>
+    </div>
+
+    <script>
+        const addBtn = document.getElementById('addBtn');
+        const modal = document.getElementById('modal');
+        const closeModal = document.getElementById('closeModal');
+
+        addBtn.onclick = () => modal.style.display = 'block';
+        closeModal.onclick = () => modal.style.display = 'none';
+        window.onclick = event => { if (event.target == modal) modal.style.display = 'none'; };
+    </script>
+</body>
+</html>
