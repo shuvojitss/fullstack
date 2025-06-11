@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profiles</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>User Directory</h2>
+    <form method="POST" class="search-bar">
+        <input type="text" name="name" placeholder="Search by name">
+        <input type="text" name="mobile" placeholder="Search by mobile">
+        <input type="number" name="age" placeholder="Search by age">
+        <button type="submit">Search</button>
+    </form>
+    <div class="container">
+        {% for user in users %}
+        <div class="card">
+            <p><strong>Name:</strong> {{ user[1] }}</p>
+            <p><strong>Mobile:</strong> {{ user[2] }}</p>
+            <p><strong>Age:</strong> {{ user[3] }}</p>
+            <p><strong>Gender:</strong> {{ user[4] }}</p>
+            <p><strong>Location:</strong> {{ user[5] }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
